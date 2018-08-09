@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def lintVersion = '26.1.4'
+    compileOnly "com.android.tools.lint:lint-api:$lintVersion"
+    compileOnly "com.android.tools.lint:lint-checks:$lintVersion"
+
+
+    testCompile "junit:junit:4.12"
+    testCompile "com.android.tools.lint:lint:$lintVersion"
+    testCompile "com.android.tools.lint:lint-tests:$lintVersion"
+    testCompile "com.android.tools:testutils:$lintVersion"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+
+jar {
+    manifest{
+        attributes('Lint-Registry-V2': 'com.tomzium.check.issue.some.SomeIssueRegistry')
+    }
+}
