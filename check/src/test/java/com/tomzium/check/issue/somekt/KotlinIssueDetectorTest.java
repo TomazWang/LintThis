@@ -1,7 +1,6 @@
-package com.tomzium.check.issue.some;
+package com.tomzium.check.issue.somekt;
 
 import com.android.tools.lint.checks.infrastructure.LintDetectorTest;
-import com.android.tools.lint.checks.infrastructure.TestLintResult;
 import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Issue;
 import java.util.Collections;
@@ -15,36 +14,35 @@ import org.junit.Test;
  * @since 2018/08/09
  **/
 
-public class SomeIssueDetectorTest extends LintDetectorTest {
+public class KotlinIssueDetectorTest extends LintDetectorTest {
 
     @Override
     protected Detector getDetector() {
-        return new SomeIssueDetector();
+        return new KotlinIssueDetector();
     }
 
     @Override
     protected List<Issue> getIssues() {
-        return Collections.singletonList(SomeIssue.ISSUE);
+        return Collections.singletonList(KotlinIssue.KOTLIN_ISSUE);
     }
 
+
     @Test
-    public void testSomeIssue() {
-        TestLintResult result = lint().files(
+    public void testKotlinIssue() {
+        lint().files(
                 java(""
                         + "package com.pkg.test;\n"
+                        + "\n"
+                        + "@Test\n"
                         + "\n"
                         + "public class TestClass{\n"
                         + "     public void testMethod(){\n"
                         + "     }\n"
                         + "}\n"
                         + ""))
-                .run();
-
-        result.expectWarningCount(1);
-        result.expect(""
-                + "src/com/pkg/test/TestClass{.java:4: Warning: Looks not so good here at method \"testMethod\" [SomeIssue]\n"
-                + "     public void testMethod(){\n"
-                + "     ^\n"
-                + "0 errors, 1 warnings");
+                .run()
+                .expectClean();
     }
+
+
 }

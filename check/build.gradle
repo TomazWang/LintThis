@@ -1,7 +1,10 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.10"
 
     def lintVersion = '26.1.4'
     compileOnly "com.android.tools.lint:lint-api:$lintVersion"
@@ -21,5 +24,6 @@ targetCompatibility = "8"
 jar {
     manifest{
         attributes('Lint-Registry-V2': 'com.tomzium.check.issue.some.SomeIssueRegistry')
+        attributes('Lint-Registry-V2': 'com.tomzium.check.issue.somekt.KotlinIssueRegistry')
     }
 }
