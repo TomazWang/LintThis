@@ -41,7 +41,12 @@ public class KotlinIssueDetectorTest extends LintDetectorTest {
                         + "}\n"
                         + ""))
                 .run()
-                .expectClean();
+                .expectWarningCount(1)
+                .expect(""
+                        + "src/com/pkg/test/TestClass{.java:3: Warning: no annotation Test allowed! [KotlinIssue]\n"
+                        + "@Test\n"
+                        + "~~~~~\n"
+                        + "0 errors, 1 warnings");
     }
 
 
