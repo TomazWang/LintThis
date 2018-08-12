@@ -1,1 +1,1 @@
-include ':app', ':check'
+include ':check', ':lintthis'

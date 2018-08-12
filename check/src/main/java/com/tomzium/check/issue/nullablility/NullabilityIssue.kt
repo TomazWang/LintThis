@@ -82,7 +82,9 @@ class NullabilityIssueAnnotationVisitor(private val context: JavaContext) : UEle
     
     private fun report(node: UMethod) {
         val methodName = node.name
-        context.report(NULLABILITY_ISSUE, context.getLocation(node), "Method $methodName should annotated with @Nullable or @NonNull")
+        context.report(NULLABILITY_ISSUE,
+                context.getLocation(node),
+                "Method $methodName should annotated with @Nullable or @NonNull")
     }
 }
 
